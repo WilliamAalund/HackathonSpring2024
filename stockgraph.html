@@ -31,15 +31,15 @@ window.onload = function () {
         }
       },
       axisY2: {
-        title: "Price per share",
-        prefix: "$"
+        title: "Litecoin Price",
+        prefix: "€"
       },
       legend: {
         verticalAlign: "top",
         horizontalAlign: "left"
       },
       data: [{
-        name: "Price (in DOL)",
+        name: "Price (in EUR)",
         yValueFormatString: "€#,###.##",
         axisYType: "secondary",
         type: "candlestick",
@@ -59,14 +59,14 @@ window.onload = function () {
         }
       },
       axisY2: {
-        prefix: "$",
+        prefix: "€",
         title: "LTC/EUR"
       },
       legend: {
         horizontalAlign: "left"
       },
       data: [{
-        yValueFormatString: "$#,###.##",
+        yValueFormatString: "€#,###.##",
         axisYType: "secondary",
         name: "LTC/EUR",
         dataPoints : dataPoints2
@@ -78,13 +78,14 @@ window.onload = function () {
         dataPoints: dataPoints3
       }],
       slider: {
-        minimum: new Date(2018, 0o6, 0o1),
-        maximum: new Date(2018, 8, 0o1)
+        minimum: new Date(2018, 6, 1),
+        maximum: new Date(2018, 8, 1)
       }
     }
   });
   $.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
     for(var i = 0; i < data.length; i++){
+      <!--data is: date, open, high, low, close -->
       dataPoints1.push({x: new Date(data[i].date), y: [Number(data[i].open), Number(data[i].high), Number(data[i].low), Number(data[i].close)], color: data[i].open < data[i].close ? "green" : "red"});;
       dataPoints2.push({x: new Date(data[i].date), y: Number(data[i].volume_eur), color: data[i].open < data[i].close ? "green" : "red"});
       dataPoints3.push({x: new Date(data[i].date), y: Number(data[i].close)});
