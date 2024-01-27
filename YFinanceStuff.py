@@ -7,5 +7,7 @@ ticker = "META"
 startDate = datetime.datetime(2018, 1, 1)
 endDate = datetime.datetime(2018,3, 1)
 tickerInformation = yf.Ticker(ticker)
-tickerInformation.actions.to_csv("tickertag{}.csv")
+tickerHistoryInformation = tickerInformation.history(start = startDate, end = endDate)
+
+tickerHistoryInformation.to_csv("tickertag{}_history.csv")
 #print(GetInformation.history(start = startDate, end = endDate))
