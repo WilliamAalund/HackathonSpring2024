@@ -24,8 +24,14 @@ def loadTickerJSON(tickerName, quarter, year):
     tickerInformation = yf.Ticker(tickerName)
     tickerHistoryInformation = tickerInformation.history(start = startDate, end = endDate)
     # Convert the dictionary to a JSON string
+    new_json = []
+    print(tickerHistoryInformation)
+    for column in tickerHistoryInformation:
+        print(column)
+        pass
+
     # Convert the DataFrame to a JSON string
-    ticker_json = tickerHistoryInformation.reset_index().to_json(orient='records')
+    ticker_json = json.dumps(new_json)
 
     # Write the JSON string to a file
     with open('tickerInformation.json', 'w') as f:
