@@ -24,9 +24,12 @@ def loadTickerJSON(tickerName, quarter, year):
     tickerInformation = yf.Ticker(tickerName)
     tickerHistoryInformation = tickerInformation.history(start = startDate, end = endDate)
     # Convert the dictionary to a JSON string
-    ticker_json = tickerHistoryInformation.to_json()
+    # Convert the DataFrame to a JSON string
+    ticker_json = tickerHistoryInformation.reset_index().to_json(orient='records')
 
     # Write the JSON string to a file
     with open('tickerInformation.json', 'w') as f:
         f.write(ticker_json)
 
+if __name__ == "__main__":
+    loadTickerJSON("AAPL", 1, 2020)
