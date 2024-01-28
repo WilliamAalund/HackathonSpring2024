@@ -82,6 +82,8 @@ class Stock {
 class Portfolio {
     constructor() {
         this.stocks = [];
+        this.player_cash = 0;
+        this.investment_cash = 0;
     }
 
     addStock(stock) {
@@ -104,6 +106,10 @@ class Portfolio {
         {
             return false;
         }
+    }
+
+    getInvestmentCash(){
+        return this.investment_cash;
     }
 
     getStock(ticker) {
@@ -129,6 +135,15 @@ class Portfolio {
             inventory[stock.ticker] = stock.quantity;
         });
         return inventory;
+    }
+
+    updateInvestmentCash() {
+        totalBalance = 0
+        for(stock in this.stocks) {
+            totalBalance += stock.getTotalValue();
+        }
+        this.investment_cash.update(player_cash - totalBalance);
+        
     }
 
     sellStock(ticker, quantity) {

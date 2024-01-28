@@ -1,3 +1,45 @@
+var selected
+var buttons = document.getElementById("pp");
+var previous = ''
+var BorS
+
+function resetButtons() {
+    for (i = 0; i < buttons.length; i++) {
+        if(buttons[i].classList.contains('active') && buttons[i].getAttribute("id") != selected) {
+            buttons[i].classList.add('active');
+        } else {
+            buttons[i].classList.remove('active');
+        }
+    }
+}
+
+function toggleEnable(name) {
+    selected = name;
+
+    //resetButtons()
+
+    //document.getElementById(selected).classList.toggle('active');
+    //if (!(previous == name || previous == '')) {
+        //document.getElementById(previous).classList.toggle('active');
+    //}
+    previous = name;
+
+    console.log(selected);
+    console.log(buttons);
+}
+
+function update() {
+    resetButtons();
+}
+
+function frame() {
+    update();
+}
+
+setInterval(frame, 33);
+
+updateBalanceBox();
+
 //  // Get the element with an ID of 'booger'
 // let boogerElement = document.getElementById('inventory');
 
@@ -22,6 +64,15 @@ const year_start = getRandomInt(2000, 2018);
 let player_cash = starting_cash;
 
 let player_portfolio = new Portfolio();
+
+function updateBalanceBox()
+{
+    var targetElement = document.getElementById("investmentBalance")
+    if(targetElement)
+    {
+        targetElement.textContent = String(player_portfolio.getInvestmentCash());
+    }
+}
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
