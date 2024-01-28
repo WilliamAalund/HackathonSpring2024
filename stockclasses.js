@@ -29,9 +29,9 @@ get_stock_data = async (ticker) => {
 };
 
 class Stock {
-    constructor(ticker) {
-        this.ticker = ticker;
-        stock_data = get_stock_data(ticker); // Returns a json/array of data 
+    constructor(symbol, quantity) {
+        this.symbol = symbol;
+        stock_data = get_stock_data(symbol); // Returns a json/array of data 
         // Constructor reads data
         this.price = price;
         this.quantity = quantity;
@@ -46,7 +46,6 @@ class Stock {
     getTotalValue() {
         return this.price * this.quantity;
     }
-
 
     getProfit() {
         return (this.price - this.bought_price) * this.quantity;
