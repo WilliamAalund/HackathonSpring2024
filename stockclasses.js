@@ -60,7 +60,7 @@ class Stock {
     toString() {
         return `Stock: ${this.symbol}, Price: ${this.price}, Quantity: ${this.quantity}`;
     }
-
+    // Others should be the list of all stocks available.
     search(query,others) {
         p = [];
         for(let i = 0; i < others.length; i++){
@@ -68,6 +68,16 @@ class Stock {
                 p.push(query);
             }
         }
+        return p;
+    }
+
+    sortByPrice(others) {
+        others.sort(isLess());
+        return others;
+    }
+
+    isLess(a,b) {
+        return a.price() - b.price();
     }
 }
 
