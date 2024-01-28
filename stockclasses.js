@@ -17,8 +17,8 @@ const readJsonFile = () => {
 get_stock_data = async (symbol) => {
     try {
         const jsonData = await readJsonFile();
-        const symbol_data = jsonData[0][symbol];
-        return symbol_data;
+        const ticker_data = jsonData[0][symbol];
+        return ticker_data;
         const curr_price = symbol_data[symbol_data.length - 1].close;
         console.log(curr_price);
         return jsonData[symbol];
@@ -29,7 +29,7 @@ get_stock_data = async (symbol) => {
 };
 
 class Stock {
-    constructor(symbol) {
+    constructor(symbol, quantity) {
         this.symbol = symbol;
         stock_data = get_stock_data(symbol); // Returns a json/array of data 
         // Constructor reads data
@@ -43,7 +43,6 @@ class Stock {
     getTotalValue() {
         return this.price * this.quantity;
     }
-
 
     getProfit() {
         return (this.price - this.bought_price) * this.quantity;
