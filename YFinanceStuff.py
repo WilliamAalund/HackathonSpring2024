@@ -6,9 +6,22 @@ import pandas as pd
 import csv
 import json
 
-def getTickerDataAtCurrentDate(tickerName, quarter, year, timeDelta = 0):
-    pass
+tickers = ["AAPL", "MSFT", "META", "CSCO", "AMZN", "TSLA", "NVDA", "COST", "DIS", "NFLX", "INTC", "BAH", "SAVE", "RIOT", "KO", "BITF", "SOFI", "V", "GME"] # These are the tickers that we want to get data for, aiming for 25 tickers
 
+def createTickerQuarterData(quarter, year):
+    pass # TODO: Create a JSON file for preselected tickers at a specific quarter
+    # For each ticker, get the ticker data for the quarter
+    tickerData = {}
+    for ticker in tickers: # Doesn't do error checking
+        tickerInformation = loadTickerJSON(ticker, quarter, year, write=False)
+        tickerData.update({ticker: tickerInformation})
+    nested_ticker_data =[tickerData]
+    # Convert the dictionary to a JSON string
+    ticker_json = json.dumps(nested_ticker_data)
+    with open('tickerDataCache.json', 'w') as f:
+        f.write(ticker_json)
+
+def getTickerDataAtCurrentDate(tickerName, quarter, year, timeDelta = 0):
     if(quarter == 1):
         startDate = datetime.datetime(year, 1, 1)
     elif(quarter == 2):
@@ -49,7 +62,7 @@ def getTickerDataAtCurrentDate(tickerName, quarter, year, timeDelta = 0):
     #     tickerHistoryInformation = tickerInformation.history(start = startDate, end = startDate)
     #print(tickerHistoryInformation)
 
-def loadTickerJSON(tickerName, quarter, year):
+def loadTickerJSON(tickerName, quarter, year, write = True):
     if(quarter == 1):
         startDate = datetime.datetime(year, 1, 1)
         endDate = datetime.datetime(year,3, 31)
@@ -74,20 +87,23 @@ def loadTickerJSON(tickerName, quarter, year):
 
     for i in range(len(open_data)):
         new_row = {}
-        new_row['date'] = str(open_data.index[i])[:10]
-        new_row['open'] = float(open_data[i])
-        new_row['open'] = float(open_data[i])
-        new_row['high'] = float(high_data[i])
-        new_row['low'] = float(low_data[i])
-        new_row['close'] = float(close_data[i])
+        new_row['date'] = str(open_data.iloc[i])[:10]
+        new_row['open'] = float(open_data.iloc[i])
+        new_row['open'] = float(open_data.iloc[i])
+        new_row['high'] = float(high_data.iloc[i])
+        new_row['low'] = float(low_data.iloc[i])
+        new_row['close'] = float(close_data.iloc[i])
         new_json.append(new_row)
-    # Convert the DataFrame to a JSON string
-    ticker_json = json.dumps(new_json)
 
-    # Write the JSON string to a file
-    with open('tickerInformation.json', 'w') as f:
-        f.write(ticker_json)
+    if write:
+        # Convert the DataFrame to a JSON string
+        ticker_json = json.dumps(new_json)
+
+        # Write the JSON string to a file
+        with open('tickerInformation.json', 'w') as f:
+            f.write(ticker_json)
+    else:
+        return new_json
 
 if __name__ == "__main__":
-    loadTickerJSON("MSFT", 1, 2020)
-    getTickerDataAtCurrentDate("META", 1, 2020)
+    createTickerQuarterData(1, 2021)
