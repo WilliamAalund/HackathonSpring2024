@@ -102,70 +102,72 @@
     </script>
 </head>
 <body>
-    <div class="container-fluid border h-100 d-flex flex-column ">
-        <div class="top-section">
-
-        </div>
-
-        <div class="row h-50">
+    <div class="container-fluid border h-100 d-flex flex-column">
+        <div class="top-section h-50 p-3">
+            <div class="row h-100">
             
-            <div class="h-100 col-3 border border-dark rounded">
-                <h2>S&P Tickers</h2>
-
-                <div class="list-group">
-                    <button id="MSFT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">MSFT</button>
-                    <button id="AAGR" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Dapibus ac facilisis in</button>
-                    <button id="CAT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Morbi leo risus</button>
-                    <button id="CART" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Porta ac consectetur ac</button>
-                    <button id="FNB" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Vestibulum at eros</button>
-                </div>
-
-            </div>
-
-            <div class="h-100 col-3 border border-dark rounded">
-                <h2>My Tickers</h2>
-
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Cras justo odio
-                        <span class="badge bg-primary rounded-pill">10</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Dapibus ac facilisis in
-                        <span class="badge bg-primary rounded-pill">2</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Morbi leo risus
-                        <span class="badge bg-primary rounded-pill">1</span>
-                    </li>
-                </ul>
-
-            </div>
-
-            <div class="col-6 h-100 border border-dark rounded">
-                <div id="chartContainer" style="height: 100%; width: 100%;"></div>
-            </div>
-
-        </div>
-
-        <div class="bottom-section h-50 top-buffer border-dark rounded">
-            <div class="listing border border-dark rounded">
-                <h1>MSFT</h1>
-            <h2>$100</h2>
-
-            <div class="btn-group d-flex col-6 justify-content-center" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success">Buy 1</button>
-                <button type="button" class="btn btn-danger">Sell 1</button>
-              </div>
-
-            </div>
-
-            <div class="trade-section top-buffer">
-                <div class="d-grid col-6 mx-auto">
-                    <button class="btn btn-primary" type="button">Confirm Trade</button>
+                <div class="h-100 col-3 border border-dark rounded p-2">
+                    <h2 class="d-flex justify-content-center">Tickers</h2>
+    
+                    <div class="list-group p-1">
+                        <button id="MSFT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">MSFT</button>
+                        <button id="AAGR" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">AAGR</button>
+                        <button id="CAT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">CAT</button>
+                        <button id="CART" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">CART</button>
+                        <button id="FNB" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">FNB</button>
+                    </div>
     
                 </div>
+    
+                <div class="h-100 col-3 border border-dark rounded p-2">
+                    <h2 class="d-flex justify-content-center">My Tickers</h2>
+    
+                    <ul class="list-group p-1">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Cras justo odio
+                            <span class="badge bg-primary rounded-pill">10</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Dapibus ac facilisis in
+                            <span class="badge bg-primary rounded-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Morbi leo risus
+                            <span class="badge bg-primary rounded-pill">1</span>
+                        </li>
+                    </ul>
+    
+                </div>
+    
+                <div class="col-6 h-100 border border-dark rounded p-2">
+                    <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+                </div>
+    
             </div>
+        </div>
+
+        
+
+        <div class="bottom-section col-5 mx-auto h-50 p-3 border-dark rounded">
+            <div class="listing border border-dark rounded row">
+                <h1 class="d-flex justify-content-center">MSFT</h1>
+                <h2 class="d-flex justify-content-center">$100</h2>
+
+                <div class="btn-group d-flex p-2 justify-content-center" role="group" aria-label="Basic example">
+                    <button type="button" class="btn col-3 btn-success">Buy 1</button>
+                    <button type="button" class="btn col-3 btn-danger">Sell 1</button>
+                </div>
+
+            </div>
+
+            <!-- TRADE BUTTON -->
+        <div class="trade-section top-buffer">
+            <div class="d-grid mx-auto">
+                <p class="d-flex justify-content-center">New Balance</p>
+                <h1 class="d-flex justify-content-center">$2</h1>
+                <button class="btn btn-primary" type="button">LOCK IN TRADE</button>
+            </div>
+        </div>
             
         </div>
 
