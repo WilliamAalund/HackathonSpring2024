@@ -60,6 +60,15 @@ class Stock {
     toString() {
         return `Stock: ${this.symbol}, Price: ${this.price}, Quantity: ${this.quantity}`;
     }
+
+    search(query,others) {
+        p = [];
+        for(let i = 0; i < others.length; i++){
+            if (query.toLowerCase() == others.symbol.slice(0,query.length).toLowerCase()) {
+                p.push(query);
+            }
+        }
+    }
 }
 
 class Portfolio {
