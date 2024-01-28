@@ -6,6 +6,25 @@ import pandas as pd
 import csv
 import json
 
+def getTickerDataAtCurrentDate(tickerName, quarter, year):
+    pass
+
+    if(quarter == 1):
+        startDate = datetime.datetime(year, 1, 1)
+    elif(quarter == 2):
+        startDate = datetime.datetime(year, 4, 1)   
+    elif(quarter == 3):
+        startDate = datetime.datetime(year, 7, 1) 
+    elif(quarter == 4):
+        startDate = datetime.datetime(year, 10, 1)
+
+    tickerInformation = yf.Ticker(tickerName)
+    tickerHistoryInformation = tickerInformation.history(start = startDate, end = startDate)
+    # While the length of the tickerHistoryInformation is 0, keep adding a day to the start date
+    while(len(tickerHistoryInformation) == 0):
+        startDate = startDate + datetime.timedelta(days=1)
+        tickerHistoryInformation = tickerInformation.history(start = startDate, end = startDate)
+    print(tickerHistoryInformation)
 
 def loadTickerJSON(tickerName, quarter, year):
     if(quarter == 1):
@@ -47,4 +66,5 @@ def loadTickerJSON(tickerName, quarter, year):
         f.write(ticker_json)
 
 if __name__ == "__main__":
-    loadTickerJSON("MSFT", 1, 2020)
+    #loadTickerJSON("MSFT", 1, 2020)
+    getTickerDataAtCurrentDate("MSFT", 1, 2020)
