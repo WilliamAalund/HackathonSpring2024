@@ -1,16 +1,17 @@
 var selected
-var buttons = document.getElementById("pp");
+var buttons = document.getElementsByClassName('a');
 var previous = ''
 var BorS
 
 function resetButtons() {
     for (i = 0; i < buttons.length; i++) {
         if(buttons[i].classList.contains('active') && buttons[i].getAttribute("id") != selected) {
-            buttons[i].classList.add('active');
-            console.log(buttons[i].getAttribute("id"));
-        } else {
             buttons[i].classList.remove('active');
+
             console.log(buttons[i].getAttribute("id"));
+        }
+        if(buttons[i].getAttribute("id") == selected && !buttons[i].classList.contains('active')) {
+            buttons[i].classList.add('active');
         }
     }
 }
@@ -18,7 +19,7 @@ function resetButtons() {
 function toggleEnable(name) {
     selected = name;
 
-    resetButtons()
+    //resetButtons()
 
     //document.getElementById(selected).classList.toggle('active');
     //if (!(previous == name || previous == '')) {
