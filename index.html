@@ -160,20 +160,18 @@
                 <h2 class="d-flex justify-content-center">$100</h2>
 
                 <div class="btn-group d-flex p-2 justify-content-center" role="group" aria-label="Basic example">
-                    <button type="button" class="btn col-3 btn-success">Buy 1</button>
-                    <button type="button" class="btn col-3 btn-danger">Sell 1</button>
+                    <button type="button" class="btn col-3 btn-success" onclick="buy('buy')">Buy 1</button>
+                    <button type="button" class="btn col-3 btn-danger" onclick="buy('sell')">Sell 1</button>
                 </div>
             </div>
 
-            <!-- Balance and trade button -->
-            <div class="trade-section top-buffer">
-                <div class="d-grid mx-auto">
-                    <p class="d-flex justify-content-center">New Balance</p>
-                    <h1 class="d-flex justify-content-center">$900</h1>
-                    <button class="btn btn-primary" type="button">LOCK IN TRADE</button>
-                </div>
+            <!-- TRADE BUTTON -->
+        <div class="trade-section top-buffer">
+            <div class="d-grid mx-auto">
+                <p class="d-flex justify-content-center">New Balance</p>
+                <h1 class="d-flex justify-content-center">$900</h1>
+                <button class="btn btn-primary" type="button" onclick="lockIN()">LOCK IN TRADE</button>
             </div>
-            
         </div>
 
     </div>

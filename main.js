@@ -30,6 +30,18 @@ function toggleEnable(name) {
     console.log(selected);
 }
 
+function buy(p) {
+    if (p == "buy") {
+        BorS = 1;
+    } else {
+        BorS = 0;
+    }
+}
+
+function lockIn() {
+    buyStock();
+}
+
 function update() {
     resetButtons();
 }
