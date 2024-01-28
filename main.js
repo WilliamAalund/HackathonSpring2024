@@ -1,6 +1,5 @@
 var selected
 var buttons = document.getElementsByClassName('a');
-var previous = ''
 var BorS
 
 function resetButtons() {
@@ -18,14 +17,6 @@ function resetButtons() {
 
 function toggleEnable(name) {
     selected = name;
-
-    //resetButtons()
-
-    //document.getElementById(selected).classList.toggle('active');
-    //if (!(previous == name || previous == '')) {
-        //document.getElementById(previous).classList.toggle('active');
-    //}
-    previous = name;
 
     console.log(selected);
 }
