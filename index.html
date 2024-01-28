@@ -88,6 +88,7 @@
                 maximum: new Date(2018, 8, 0o1)
               }
             }
+
           });
           $.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
             for(var i = 0; i < data.length; i++){
@@ -108,11 +109,11 @@
                 <h2>S&P Tickers</h2>
 
                 <div class="list-group">
-                    <button id="MSFT" type="button" class="list-group-item list-group-item-action active" onclick="toggleEnable('MSFT')">MSFT</button>
-                    <button id="AAGR" type="button" class="list-group-item list-group-item-action active">Dapibus ac facilisis in</button>
-                    <button id="CAT" type="button" class="list-group-item list-group-item-action active">Morbi leo risus</button>
-                    <button id="CART" type="button" class="list-group-item list-group-item-action active">Porta ac consectetur ac</button>
-                    <button id="FNB" type="button" class="list-group-item list-group-item-action active">Vestibulum at eros</button>
+                    <button id="MSFT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">MSFT</button>
+                    <button id="AAGR" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Dapibus ac facilisis in</button>
+                    <button id="CAT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Morbi leo risus</button>
+                    <button id="CART" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Porta ac consectetur ac</button>
+                    <button id="FNB" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">Vestibulum at eros</button>
                 </div>
 
             </div>
@@ -121,11 +122,11 @@
                 <h2>My Tickers</h2>
 
                 <div class="list-group">
-                    <button id="MSFT" type="button" class="list-group-item list-group-item-action active" onclick="toggleEnable('MSFT')">MSFT</button>
-                    <button id="AAGR" type="button" class="list-group-item list-group-item-action active">Dapibus ac facilisis in</button>
-                    <button id="CAT" type="button" class="list-group-item list-group-item-action active">Morbi leo risus</button>
-                    <button id="CART" type="button" class="list-group-item list-group-item-action active">Porta ac consectetur ac</button>
-                    <button id="FNB" type="button" class="list-group-item list-group-item-action active">Vestibulum at eros</button>
+                    <button id="MSFT" type="button" class="list-group-item list-group-item-action">MSFT</button>
+                    <button id="AAGR" type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+                    <button id="CAT" type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+                    <button id="CART" type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+                    <button id="FNB" type="button" class="list-group-item list-group-item-action ">Vestibulum at eros</button>
                 </div>
 
                 <ul class="list-group">
