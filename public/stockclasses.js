@@ -1,7 +1,6 @@
-
 // Define a function to read the JSON file and return a Promise
 import tickerDataCache from "./tickerDataCache.json" assert { type : "json"}
-console.log(tickerDataCache)
+
 
 // const readJsonFile = () => {
 
@@ -17,11 +16,13 @@ console.log(tickerDataCache)
     // });
 // };
 
-const get_stock_data = (ticker) => {
+export const get_stock_data = (ticker) => {
     try {
         let jsonData = tickerDataCache;
         let ticker_data = jsonData[0][ticker];
-        //console.log(ticker_data);
+        console.log(ticker);
+        console.log(jsonData);
+        console.log(ticker_data);
         return ticker_data;
     } catch (err) {
         console.error(err);
@@ -156,15 +157,6 @@ export class Portfolio {
     }
 
     
-}
-
-function fetchData() {
-    let my_data = get_stock_data("AAPL");
-    let my_slice_of_data = my_data[0];
-    console.log(my_slice_of_data);
-    let my_smaller_slice_of_data = my_slice_of_data[0];
-    //my_stock = new Stock("AAPL");
-    //my_stock.get_buy_value(10);
 }
 
 //fetchData();

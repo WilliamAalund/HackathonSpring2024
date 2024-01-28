@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="module" src="main.js"></script>
+    <script type="module" src="./stockclasses.js"></script>
     <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.stock.min.js"></script>
     <script type="text/javascript">
-        var ticker_name = 'SAMP' // Fill this with ticker name
 
         window.onload = function () {
+          var ticker_name = localStorage.getItem("ticker_name")
+          var ticker_data = JSON.parse(localStorage.getItem("ticker_cache"))
           var dataPoints1 = [], dataPoints2 = [], dataPoints3 = [];
+          for(var i = 0; i < ticker_data.length; i++){
+            console.log(ticker_data[i].date)
+              dataPoints1.push({x: new Date(ticker_data[i].date), y: [Number(ticker_data[i].open), Number(ticker_data[i].high), Number(ticker_data[i].low), Number(ticker_data[i].close)], color: ticker_data[i].open < ticker_data[i].close ? "green" : "red"});;
+              dataPoints2.push({x: new Date(ticker_data[i].date), y: Number(ticker_data[i].volume_eur), color: ticker_data[i].open < ticker_data[i].close ? "green" : "red"});
+              dataPoints3.push({x: new Date(ticker_data[i].date), y: Number(ticker_data[i].close)});
+            }
+            console.log(dataPoints1, dataPoints2, dataPoints3)
+            
           window.stockChart = new CanvasJS.StockChart("chartContainer",{
             exportEnabled: true,
             theme: "light2",
@@ -90,14 +101,15 @@
               }
             }
           });
-          $.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
-            for(var i = 0; i < data.length; i++){
-              dataPoints1.push({x: new Date(data[i].date), y: [Number(data[i].open), Number(data[i].high), Number(data[i].low), Number(data[i].close)], color: data[i].open < data[i].close ? "green" : "red"});;
-              dataPoints2.push({x: new Date(data[i].date), y: Number(data[i].volume_eur), color: data[i].open < data[i].close ? "green" : "red"});
-              dataPoints3.push({x: new Date(data[i].date), y: Number(data[i].close)});
-            }
-            stockChart.render();
-          });
+          stockChart.render();
+          // $.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
+          //   for(var i = 0; i < ticker_data.length; i++){
+          //     dataPoints1.push({x: new Date(ticker_data[i].date), y: [Number(ticker_data[i].open), Number(ticker_data[i].high), Number(ticker_data[i].low), Number(ticker_data[i].close)], color: ticker_data[i].open < ticker_data[i].close ? "green" : "red"});;
+          //     dataPoints2.push({x: new Date(ticker_data[i].date), y: Number(ticker_data[i].volume_eur), color: ticker_data[i].open < ticker_data[i].close ? "green" : "red"});
+          //     dataPoints3.push({x: new Date(ticker_data[i].date), y: Number(ticker_data[i].close)});
+          //   }
+          //   stockChart.render();
+          // });
         }
     </script>
 </head>
@@ -162,7 +174,5 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-   
-    <script type="module" src="main.js"></script>
   </body>
 </html>

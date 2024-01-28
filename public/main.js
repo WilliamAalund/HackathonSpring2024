@@ -1,4 +1,7 @@
- // Get the element with an ID of 'booger'
+export var ticker_name = 'AAPL'
+import {get_stock_data} from './stockclasses.js';
+
+// Get the element with an ID of 'booger'
 let boogerElement = document.getElementById('inventory');
 
  // Create a new list item
@@ -45,14 +48,6 @@ async function buyStock(symbol, quantity) {
     }
 }
 
-(async () => {
-    try {
-        await buyStock("AAPL", 10);
-    } catch (error) {
-        console.error(error);
-    }
-})();
-
 function sellStock(symbol, quantity) { // FIXME: Needs to be async
     // Check if player has the stock
     if (player_portfolio.hasStock(symbol)) {
@@ -80,6 +75,8 @@ function updatePlayerMoney(value) {
 
 
 function changeTickerName(newName) {
+    localStorage.setItem("ticker_name", newName)
+    localStorage.setItem("ticker_cache", JSON.stringify(get_stock_data(newName)))
     ticker_name = newName;
 
     // Assuming the chart object is accessible
@@ -90,4 +87,4 @@ function changeTickerName(newName) {
     }
 }
 
-changeTickerName("we ball");
+changeTickerName("AAPL");

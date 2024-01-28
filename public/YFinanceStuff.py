@@ -41,8 +41,7 @@ def getTickerDataAtCurrentDate(tickerName, quarter, year, timeDelta = 0):
         close_data = tickerHistoryInformation["Close"]
 
         new_row = {}
-        new_row['date'] = str(open_data.iloc[0])[:10]
-        new_row['open'] = float(open_data.iloc[0])
+        new_row['date'] = str(tickerHistoryInformation["Date"].iloc[0])[:10]
         new_row['open'] = float(open_data.iloc[0])
         new_row['high'] = float(high_data.iloc[0])
         new_row['low'] = float(low_data.iloc[0])
