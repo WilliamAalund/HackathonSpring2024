@@ -1,31 +1,33 @@
 var selected
-var buttons = document.getElementById("pp");
-var previous = ''
+var buttons = document.getElementsByClassName('a');
 var BorS
 
 function resetButtons() {
     for (i = 0; i < buttons.length; i++) {
         if(buttons[i].classList.contains('active') && buttons[i].getAttribute("id") != selected) {
-            buttons[i].classList.add('active');
-        } else {
             buttons[i].classList.remove('active');
+        }
+        if(buttons[i].getAttribute("id") == selected && !buttons[i].classList.contains('active')) {
+            buttons[i].classList.add('active');
         }
     }
 }
 
 function toggleEnable(name) {
     selected = name;
-
-    //resetButtons()
-
-    //document.getElementById(selected).classList.toggle('active');
-    //if (!(previous == name || previous == '')) {
-        //document.getElementById(previous).classList.toggle('active');
-    //}
-    previous = name;
-
     console.log(selected);
-    console.log(buttons);
+}
+
+function buy(p) {
+    if (p == "buy") {
+        BorS = 1;
+    } else {
+        BorS = 0;
+    }
+}
+
+function lockIn() {
+    //buyStock();
 }
 
 function update() {

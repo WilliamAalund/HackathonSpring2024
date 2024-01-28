@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.stock.min.js"></script>
-    <script src="test.js"></script>
+    <script src="index.js"></script>
     <script type="text/javascript">
         window.onload = function () {
           var dataPoints1 = [], dataPoints2 = [], dataPoints3 = [];
@@ -110,11 +110,11 @@
                     <h2 class="d-flex justify-content-center">Tickers</h2>
     
                     <div class="list-group p-1">
-                        <button id="MSFT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">MSFT</button>
-                        <button id="AAGR" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">AAGR</button>
-                        <button id="CAT" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">CAT</button>
-                        <button id="CART" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">CART</button>
-                        <button id="FNB" type="button" class="list-group-item list-group-item-action" onclick="toggleEnable(id)">FNB</button>
+                        <button id="MSFT" type="button" class="a list-group-item list-group-item-action" onclick="toggleEnable(id)">MSFT</button>
+                        <button id="AAGR" type="button" class="a list-group-item list-group-item-action" onclick="toggleEnable(id)">AAGR</button>
+                        <button id="CAT" type="button" class="a list-group-item list-group-item-action" onclick="toggleEnable(id)">CAT</button>
+                        <button id="CART" type="button" class="a list-group-item list-group-item-action" onclick="toggleEnable(id)">CART</button>
+                        <button id="FNB" type="button" class="a list-group-item list-group-item-action" onclick="toggleEnable(id)">FNB</button>
                     </div>
     
                 </div>
@@ -143,13 +143,6 @@
                     <div id="chartContainer" style="height: 100%; width: 100%;"></div>
                 </div>
     
-            </div>
-
-            <div class="h-100 col-3 border border-dark rounded">
-                <h2>My Tickers</h2>
-
-                <ul class="list-group" id='inventory'>
-                </ul>
             </div>
 
             <div class="col-6 h-100">
@@ -185,11 +178,7 @@
                 <button class="btn btn-primary" type="button" onclick="lockIN()">LOCK IN TRADE</button>
             </div>
         </div>
-        <div id="investmentBalance">Sample text</div>
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
-    <script src="index.js"></script>
   </body>
 </html>
