@@ -14,14 +14,14 @@ const readJsonFile = () => {
     });
 };
 
-get_stock_data = async (symbol) => {
+get_stock_data = async (ticker) => {
     try {
         const jsonData = await readJsonFile();
-        const symbol_data = jsonData[0][symbol];
-        return symbol_data;
-        const curr_price = symbol_data[symbol_data.length - 1].close;
+        const ticker_data = jsonData[0][ticker];
+        return ticker_data;
+        const curr_price = ticker_data[ticker_data.length - 1].close;
         console.log(curr_price);
-        return jsonData[symbol];
+        return jsonData[ticker];
     } catch (err) {
         console.error(err);
         return;
@@ -29,15 +29,18 @@ get_stock_data = async (symbol) => {
 };
 
 class Stock {
-    constructor(symbol) {
-        this.symbol = symbol;
-        stock_data = get_stock_data(symbol); // Returns a json/array of data 
+    constructor(ticker) {
+        this.ticker = ticker;
+        stock_data = get_stock_data(ticker); // Returns a json/array of data 
         // Constructor reads data
         this.price = price;
         this.quantity = quantity;
         this.bought_price = price;
         this.bought_quantity = quantity;
 
+    }
+    getQuantity() { 
+        return this.quantity; 
     }
 
     getTotalValue() {
@@ -58,7 +61,7 @@ class Stock {
     }
 
     toString() {
-        return `Stock: ${this.symbol}, Price: ${this.price}, Quantity: ${this.quantity}`;
+        return `Stock: ${this.ticker}, Price: ${this.price}, Quantity: ${this.quantity}`;
     }
 
     search(query,others) {
@@ -80,8 +83,19 @@ class Portfolio {
         this.stocks.push(stock);
     }
 
-    getStock(symbol) {
-        return this.stocks.find(stock => stock.symbol === symbol);
+    hasStock(ticker)
+    {
+        if(this.stocks.find(stock => stock.ticker === ticker)) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    getStock(ticker) {
+        return this.stocks.find(stock => stock.ticker === ticker);
     }
 
     getStocks() {
@@ -96,8 +110,8 @@ class Portfolio {
         return this.stocks.reduce((total, stock) => total + stock.getProfit(), 0);
     }
 
-    sellStock(symbol, quantity) {
-        let stock = this.getStock(symbol);
+    sellStock(ticker, quantity) {
+        let stock = this.getStock(ticker);
         if (stock) {
             if (stock.quantity >= quantity) {
                 stock.set_curr_quantity(stock.quantity - quantity);
