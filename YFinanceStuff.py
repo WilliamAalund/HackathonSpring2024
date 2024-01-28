@@ -6,7 +6,7 @@ import pandas as pd
 import csv
 import json
 
-def getTickerDataAtCurrentDate(tickerName, quarter, year):
+def getTickerDataAtCurrentDate(tickerName, quarter, year, timeDelta = 0):
     pass
 
     if(quarter == 1):
@@ -19,12 +19,35 @@ def getTickerDataAtCurrentDate(tickerName, quarter, year):
         startDate = datetime.datetime(year, 10, 1)
 
     tickerInformation = yf.Ticker(tickerName)
-    tickerHistoryInformation = tickerInformation.history(start = startDate, end = startDate)
+    try:
+        tickerHistoryInformation = tickerInformation.history(start = startDate, end = startDate + datetime.timedelta(days=5))
+        new_json = []
+        open_data = tickerHistoryInformation["Open"]
+        high_data = tickerHistoryInformation["High"]
+        low_data = tickerHistoryInformation["Low"]
+        close_data = tickerHistoryInformation["Close"]
+
+        new_row = {}
+        new_row['date'] = str(open_data.iloc[0])[:10]
+        new_row['open'] = float(open_data.iloc[0])
+        new_row['open'] = float(open_data.iloc[0])
+        new_row['high'] = float(high_data.iloc[0])
+        new_row['low'] = float(low_data.iloc[0])
+        new_row['close'] = float(close_data.iloc[0])
+        new_json.append(new_row)
+
+        ticker_json = json.dumps(new_json)
+
+        return ticker_json
+    except:
+        timeDelta += 1
+        return getTickerDataAtCurrentDate(tickerName, quarter, year, timeDelta)
+
     # While the length of the tickerHistoryInformation is 0, keep adding a day to the start date
-    while(len(tickerHistoryInformation) == 0):
-        startDate = startDate + datetime.timedelta(days=1)
-        tickerHistoryInformation = tickerInformation.history(start = startDate, end = startDate)
-    print(tickerHistoryInformation)
+    # while(len(tickerHistoryInformation) == 0):
+    #     startDate = startDate + datetime.timedelta(days=1)
+    #     tickerHistoryInformation = tickerInformation.history(start = startDate, end = startDate)
+    #print(tickerHistoryInformation)
 
 def loadTickerJSON(tickerName, quarter, year):
     if(quarter == 1):
@@ -66,5 +89,5 @@ def loadTickerJSON(tickerName, quarter, year):
         f.write(ticker_json)
 
 if __name__ == "__main__":
-    #loadTickerJSON("MSFT", 1, 2020)
-    getTickerDataAtCurrentDate("MSFT", 1, 2020)
+    loadTickerJSON("MSFT", 1, 2020)
+    getTickerDataAtCurrentDate("META", 1, 2020)
