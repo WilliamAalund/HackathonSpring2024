@@ -83,13 +83,7 @@ window.onload = function () {
       }
     }
   });
-  $.getJSON("tickerInformation.json", function(data2) {
-        console.log("python json");
-        console.log(data2);
-      });
-  $.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
-    console.log("canvasjs json");
-    console.log(data);
+  $.getJSON("tickerInformation.json", function(data) {
     for(var i = 0; i < data.length; i++){
       <!--data is: date, open, high, low, close -->
       dataPoints1.push({x: new Date(data[i].date), y: [Number(data[i].open), Number(data[i].high), Number(data[i].low), Number(data[i].close)], color: data[i].open < data[i].close ? "green" : "red"});;

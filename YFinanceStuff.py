@@ -13,10 +13,10 @@ def loadTickerJSON(tickerName, quarter, year):
         endDate = datetime.datetime(year,3, 31)
     elif(quarter == 2):
         startDate = datetime.datetime(year, 4, 1)
-        endDate = datetime.datetime(year,6, 31)   
+        endDate = datetime.datetime(year,6, 30)   
     elif(quarter == 3):
         startDate = datetime.datetime(year, 7, 1)
-        endDate = datetime.datetime(year,9, 31)   
+        endDate = datetime.datetime(year,9, 30)   
     elif(quarter == 4):
         startDate = datetime.datetime(year, 10, 1)
         endDate = datetime.datetime(year,12, 31)  
@@ -25,11 +25,20 @@ def loadTickerJSON(tickerName, quarter, year):
     tickerHistoryInformation = tickerInformation.history(start = startDate, end = endDate)
     # Convert the dictionary to a JSON string
     new_json = []
-    print(tickerHistoryInformation)
-    for column in tickerHistoryInformation:
-        print(column)
-        pass
+    open_data = tickerHistoryInformation["Open"]
+    high_data = tickerHistoryInformation["High"]
+    low_data = tickerHistoryInformation["Low"]
+    close_data = tickerHistoryInformation["Close"]
 
+    for i in range(len(open_data)):
+        new_row = {}
+        new_row['date'] = str(open_data.index[i])[:10]
+        new_row['open'] = float(open_data[i])
+        new_row['open'] = float(open_data[i])
+        new_row['high'] = float(high_data[i])
+        new_row['low'] = float(low_data[i])
+        new_row['close'] = float(close_data[i])
+        new_json.append(new_row)
     # Convert the DataFrame to a JSON string
     ticker_json = json.dumps(new_json)
 
@@ -38,4 +47,4 @@ def loadTickerJSON(tickerName, quarter, year):
         f.write(ticker_json)
 
 if __name__ == "__main__":
-    loadTickerJSON("AAPL", 1, 2020)
+    loadTickerJSON("MSFT", 1, 2020)
