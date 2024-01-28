@@ -1,71 +1,13 @@
-//  // Get the element with an ID of 'booger'
-// let boogerElement = document.getElementById('inventory');
+const express = require("express")
+const app = express()
 
-//  // Create a new list item
-// let newListItem = document.createElement('li');
+const fs = require("fs")
+const path = require("path")
 
-//  // Add a class to the new list item
-// newListItem.className = 'list-group-item';
+app.use(express.static("public"))
 
-//  // Set the text content of the new list item
-// newListItem.textContent = 'New list item';
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "/index.html"))
+})
 
-//  // Add the new list item to the 'booger' element
-// boogerElement.appendChild(newListItem);
-
-let ticker_name = 'SAMP' // Fill this with ticker name
-const Portfolio = require("./stockclasses.js");
-const Stock = require("./stockclasses.js");
-
-const starting_cash = 2000;
-const year_start = getRandomInt(2000, 2018);
-let player_cash = starting_cash;
-
-let player_portfolio = new Portfolio();
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function buyStock(symbol, quantity) {
-    // Check if player has enough money to buy stock
-    // If not, return an error
-    let stock = new Stock(symbol, quantity);
-
-    if (player_portfolio.hasStock(symbol)) {
-        stock = player_portfolio.getStock(symbol);
-    }
-
-    purchace_price = stock.get_buy_value(quantity);
-
-    if (player_cash >= purchace_price) {
-        player_cash -= purchace_price;
-        player_portfolio.addStock(stock);
-        console.log("You bought " + quantity + " shares of " + symbol + " for $" + purchace_price);
-    }
-}
-
-buyStock("AAPL", 10);
-
-function sellStock(symbol, quantity) {
-    // Check if player has the stock
-    if (player_portfolio.hasStock(symbol)) {
-        let stock = player_portfolio.getStock(symbol);
-        if (quantity > stock.getQuantity()) {
-            quantity = stock.getQuantity();
-            console.log("You don't have that many shares of " + symbol + ". Selling all " + quantity + " shares.");
-            player_portfolio.sellStock(symbol, quantity);
-            return;
-        }
-        let sell_price = stock.get_sell_value(quantity);
-        player_cash += sell_price;
-        player_portfolio.removeStock(symbol);
-        console.log("You sold " + quantity + " shares of " + symbol + " for $" + sell_price);
-    }
-    else {
-        console.log("You don't have that stock");
-        return;
-    }
-}
+app.listen(8080)
