@@ -18,4 +18,8 @@ body, html {
   width: 200px;
   height: 50px;
   background-color: gray;
+  text-align: center;
+  line-height: 50px;
+  font-size: 30px; /* Increase font size */
 }
+
