@@ -27,7 +27,11 @@ function buy(p) {
 }
 
 function lockIn() {
-    //buyStock();
+    if(BorS == 1) {
+        buyStock(selected, 1);
+    } else {
+        sellStock(selected, 1);
+    }
 }
 
 function update() {
@@ -36,6 +40,7 @@ function update() {
 
 function frame() {
     update();
+    updateBalanceBox();
 }
 
 setInterval(frame, 33);
@@ -69,11 +74,7 @@ let player_portfolio = new Portfolio();
 
 function updateBalanceBox()
 {
-    var targetElement = document.getElementById("investmentBalance")
-    if(targetElement)
-    {
-        targetElement.textContent = String(player_portfolio.getInvestmentCash());
-    }
+    //document.getElementById("MONEY").innerHTML = "$" + player_portfolio.getInvestmentCash();
 }
 
 function getRandomInt(min, max) {

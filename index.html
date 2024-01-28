@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.stock.min.js"></script>
-    <script src="index.js"></script>
     <script type="text/javascript">
         window.onload = function () {
           var dataPoints1 = [], dataPoints2 = [], dataPoints3 = [];
@@ -16,7 +15,7 @@
             exportEnabled: true,
             theme: "light2",
             title:{
-              text: ticker_name
+              text:"REPLACE STOCKNAME"
             },
             charts: [{
               toolTip: {
@@ -102,6 +101,7 @@
     </script>
 </head>
 <body>
+  <script src="index.js"></script>
     <div class="container-fluid border h-100 d-flex flex-column">
         <div class="top-section h-50 p-3">
             <div class="row h-100">
@@ -124,15 +124,19 @@
     
                     <ul class="list-group p-1">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Cras justo odio
+                            MSFT
                             <span class="badge bg-primary rounded-pill">10</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Dapibus ac facilisis in
+                            AAGR
                             <span class="badge bg-primary rounded-pill">2</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Morbi leo risus
+                            CAT
+                            <span class="badge bg-primary rounded-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            CART
                             <span class="badge bg-primary rounded-pill">1</span>
                         </li>
                     </ul>
@@ -144,22 +148,17 @@
                 </div>
     
             </div>
-
-            <div class="col-6 h-100">
-                <div id="chartContainer" style="height: 100%; width: 100%;"></div>
-            </div>
-
         </div>
+
+        
 
         <div class="bottom-section col-5 mx-auto h-50 p-1 border-dark rounded">
 
-            <!-- Cash -->
             <div class="listing border border-dark rounded row p-2">
                 <h1 class="d-flex justify-content-center">CASH</h1>
                 <h2 class="d-flex justify-content-center">$10000</h2>
             </div>
 
-            <!-- Stock Information -->
             <div class="listing border border-dark rounded row">
                 <h1 class="d-flex justify-content-center">MSFT</h1>
                 <h2 class="d-flex justify-content-center">$100</h2>
@@ -168,17 +167,24 @@
                     <button type="button" class="btn col-3 btn-success" onclick="buy('buy')">Buy 1</button>
                     <button type="button" class="btn col-3 btn-danger" onclick="buy('sell')">Sell 1</button>
                 </div>
+
             </div>
 
-            <!-- TRADE BUTTON -->
+        <!-- TRADE BUTTON -->
         <div class="trade-section top-buffer">
             <div class="d-grid mx-auto">
                 <p class="d-flex justify-content-center">New Balance</p>
                 <h1 class="d-flex justify-content-center">$900</h1>
-                <button class="btn btn-primary" type="button" onclick="lockIN()">LOCK IN TRADE</button>
+                <button class="btn btn-primary" type="button" onclick="lockIn()">LOCK IN TRADE</button>
             </div>
         </div>
+            
+        </div>
+
+        
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>
