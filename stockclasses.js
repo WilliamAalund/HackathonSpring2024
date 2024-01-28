@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { get } = require('http');
 
 // Define a function to read the JSON file and return a Promise
 const readJsonFile = () => {
@@ -18,6 +19,7 @@ get_stock_data = async (ticker) => {
     try {
         const jsonData = await readJsonFile();
         const ticker_data = jsonData[0][ticker];
+        //console.log(ticker_data);
         return ticker_data;
         const curr_price = ticker_data[ticker_data.length - 1].close;
         console.log(curr_price);
@@ -27,6 +29,8 @@ get_stock_data = async (ticker) => {
         return;
     }
 };
+
+get_stock_data("AAPL");
 
 class Stock {
     constructor(symbol, quantity) {
@@ -79,7 +83,14 @@ class Portfolio {
     }
 
     addStock(stock) {
-        this.stocks.push(stock);
+        if (this.hasStock(stock.ticker)) {
+            // Modify existing stock on the list
+            let existing_stock = this.getStock(stock.ticker);
+            existing_stock.set_curr_quantity(existing_stock.quantity + stock.quantity);
+            //existing_stock.set_curr_price(stock.price);
+        } else {
+            this.stocks.push(stock);
+        }
     }
 
     hasStock(ticker)
@@ -109,11 +120,23 @@ class Portfolio {
         return this.stocks.reduce((total, stock) => total + stock.getProfit(), 0);
     }
 
+    getDisplayInventory() {
+        // Returns a dictionary of stock tickers, and quantities
+        let inventory = {};
+        this.stocks.forEach(stock => {
+            inventory[stock.ticker] = stock.quantity;
+        });
+        return inventory;
+    }
+
     sellStock(ticker, quantity) {
         let stock = this.getStock(ticker);
         if (stock) {
-            if (stock.quantity >= quantity) {
+            if (stock.quantity > quantity) {
                 stock.set_curr_quantity(stock.quantity - quantity);
+                return stock.get_sell_value(stock.price);
+            } else {
+                this.stocks.splice(this.stocks.indexOf(stock), 1);
                 return stock.get_sell_value(stock.price);
             }
         }
@@ -123,4 +146,6 @@ class Portfolio {
     toString() {
         return this.stocks.map(stock => stock.toString()).join("\n");
     }
+
+    
 }

@@ -11,30 +11,46 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
+
 function buyStock(symbol, quantity) {
-    let stock = new Stock(symbol, quantity);
-    buy_price = stock.getTotalValue();
-    // Get the stock price
-    // If the player has enough money, buy the stock
-    // else, return an error
-    if (player_cash >= buy_price) {
-        player_cash -= buy_price;
+    // Check if player has enough money to buy stock
+    // If not, return an error
+    if (player_portfolio.hasStock(symbol)) {
+        let stock = player_portfolio.getStock(symbol);
+    }
+    else {
+        console.log("You don't have that stock");
+        let stock = new Stock(symbol, quantity);
+    }
+
+    purchace_price = stock.getTotalValue();
+
+    if (player_cash >= purchace_price) {
+        player_cash -= purchace_price;
         player_portfolio.addStock(stock);
-    } else {
-        console.log("Not enough money to buy stock");
+        console.log("You bought " + quantity + " shares of " + symbol + " for $" + purchace_price);
     }
 }
 
 function sellStock(symbol, quantity) {
-    let stock = player_portfolio.getStock(symbol);
-    sell_price = stock.get_sell_value();
-    // If the player has the stock, sell it
-    // else, return an error
-    if (stock) {
+    // Check if player has the stock
+    if (player_portfolio.hasStock(symbol)) {
+        let stock = player_portfolio.getStock(symbol);
+        if (quantity > stock.getQuantity()) {
+            quantity = stock.getQuantity();
+            console.log("You don't have that many shares of " + symbol + ". Selling all " + quantity + " shares.");
+            player_portfolio.sellStock(symbol, quantity);
+            return;
+        }
+        let sell_price = stock.get_sell_value(quantity);
         player_cash += sell_price;
-        player_portfolio.removeStock(stock);
-    } else {
+        player_portfolio.removeStock(symbol);
+        console.log("You sold " + quantity + " shares of " + symbol + " for $" + sell_price);
+    }
+    else {
         console.log("You don't have that stock");
+        return;
     }
 }
 
