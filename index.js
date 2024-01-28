@@ -13,6 +13,7 @@ newListItem.textContent = 'New list item';
  // Add the new list item to the 'booger' element
 boogerElement.appendChild(newListItem);
 
+let my_name = 'dfsa' // Fill this with ticker name
 const otherFile = require('stockclasses.js');
 
 const starting_cash = 2000;
