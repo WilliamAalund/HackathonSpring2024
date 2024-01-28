@@ -103,6 +103,10 @@
 </head>
 <body>
     <div class="container-fluid border h-100 d-flex flex-column ">
+        <div class="top-section">
+
+        </div>
+
         <div class="row h-50">
             
             <div class="h-100 col-3 border border-dark rounded">
@@ -121,56 +125,54 @@
             <div class="h-100 col-3 border border-dark rounded">
                 <h2>My Tickers</h2>
 
-                <div class="list-group">
-                    <button id="MSFT" type="button" class="list-group-item list-group-item-action">MSFT</button>
-                    <button id="AAGR" type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-                    <button id="CAT" type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-                    <button id="CART" type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-                    <button id="FNB" type="button" class="list-group-item list-group-item-action ">Vestibulum at eros</button>
-                </div>
-
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                      Cras justo odio
-                      <span class="badge badge-primary badge-pill">14</span>
+                        Cras justo odio
+                        <span class="badge bg-primary rounded-pill">10</span>
                     </li>
-
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                      Dapibus ac facilisis in
-                      <span class="badge badge-primary badge-pill">2</span>
+                        Dapibus ac facilisis in
+                        <span class="badge bg-primary rounded-pill">2</span>
                     </li>
-
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                      Morbi leo risus
-                      <span class="badge badge-primary badge-pill">1</span>
+                        Morbi leo risus
+                        <span class="badge bg-primary rounded-pill">1</span>
                     </li>
-
-                  </ul>
+                </ul>
 
             </div>
 
-            <div class="col-6 h-100">
+            <div class="col-6 h-100 border border-dark rounded">
                 <div id="chartContainer" style="height: 100%; width: 100%;"></div>
             </div>
 
         </div>
 
-        <div class="large-section h-50 top-buffer border-dark rounded">
+        <div class="bottom-section h-50 top-buffer border-dark rounded">
+            <div class="listing border border-dark rounded">
+                <h1>MSFT</h1>
+            <h2>$100</h2>
 
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-success btn-lg">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Buy
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Buy 1
                 </label>
                 <label class="btn btn-danger btn-lg">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> Sell
+                  <input type="radio" name="options" id="option2" autocomplete="off"> Sell 1
                 </label>
+            </div>
+            </div>
+
+            <div class="trade-section top-buffer">
+                <div class="d-grid col-6 mx-auto">
+                    <button class="btn btn-primary" type="button">Confirm Trade</button>
+    
+                </div>
             </div>
             
         </div>
 
-        <div class="trade-section top-buffer">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Trade</button>
-        </div>
+        
 
 
     </div>
