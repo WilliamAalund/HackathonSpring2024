@@ -30,8 +30,6 @@ get_stock_data = async (ticker) => {
     }
 };
 
-get_stock_data("AAPL");
-
 class Stock {
     constructor(symbol, quantity) {
         this.symbol = symbol;
@@ -57,6 +55,10 @@ class Stock {
 
     set_curr_quantity(quantity) {
         this.quantity = quantity;
+    }
+
+    get_buy_value(value_to_be_bought) {
+        return value_to_be_bought * this.quantity;
     }
 
     get_sell_value(value_to_be_sold) {
@@ -149,3 +151,8 @@ class Portfolio {
 
     
 }
+
+my_stock = new Stock();
+my_stock.get_buy_value(10);
+
+module.exports = Portfolio, Stock;

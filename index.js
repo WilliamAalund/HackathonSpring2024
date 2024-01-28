@@ -1,24 +1,26 @@
- // Get the element with an ID of 'booger'
-let boogerElement = document.getElementById('inventory');
+//  // Get the element with an ID of 'booger'
+// let boogerElement = document.getElementById('inventory');
 
- // Create a new list item
-let newListItem = document.createElement('li');
+//  // Create a new list item
+// let newListItem = document.createElement('li');
 
- // Add a class to the new list item
-newListItem.className = 'list-group-item';
+//  // Add a class to the new list item
+// newListItem.className = 'list-group-item';
 
- // Set the text content of the new list item
-newListItem.textContent = 'New list item';
+//  // Set the text content of the new list item
+// newListItem.textContent = 'New list item';
 
- // Add the new list item to the 'booger' element
-boogerElement.appendChild(newListItem);
+//  // Add the new list item to the 'booger' element
+// boogerElement.appendChild(newListItem);
 
-let my_name = 'dfsa' // Fill this with ticker name
-const otherFile = require('stockclasses.js');
+let ticker_name = 'SAMP' // Fill this with ticker name
+const Portfolio = require("./stockclasses.js");
+const Stock = require("./stockclasses.js");
 
 const starting_cash = 2000;
 const year_start = getRandomInt(2000, 2018);
 let player_cash = starting_cash;
+
 let player_portfolio = new Portfolio();
 
 function getRandomInt(min, max) {
@@ -30,15 +32,13 @@ function getRandomInt(min, max) {
 function buyStock(symbol, quantity) {
     // Check if player has enough money to buy stock
     // If not, return an error
+    let stock = new Stock(symbol, quantity);
+
     if (player_portfolio.hasStock(symbol)) {
-        let stock = player_portfolio.getStock(symbol);
-    }
-    else {
-        console.log("You don't have that stock");
-        let stock = new Stock(symbol, quantity);
+        stock = player_portfolio.getStock(symbol);
     }
 
-    purchace_price = stock.getTotalValue();
+    purchace_price = stock.get_buy_value(quantity);
 
     if (player_cash >= purchace_price) {
         player_cash -= purchace_price;
@@ -46,6 +46,8 @@ function buyStock(symbol, quantity) {
         console.log("You bought " + quantity + " shares of " + symbol + " for $" + purchace_price);
     }
 }
+
+buyStock("AAPL", 10);
 
 function sellStock(symbol, quantity) {
     // Check if player has the stock
